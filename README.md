@@ -9,14 +9,14 @@
 
 Calculation on when to go to sleep to achieve the best possible rest, based on 90-minute sleep cycles and your target wake-up time.
 
-## Entwicklung
+## Development
 
-Voraussetzung: Node.js 22 (siehe `.nvmrc`).
+Requires Node.js 22 (see `.nvmrc`).
 
 ```bash
-npm install      # Abhängigkeiten installieren
-npm run dev      # Dev-Server mit Hot Reload auf http://localhost:5173
-npm test         # Tests einmal ausführen (Vitest)
-npm run lint     # Linting (oxlint)
-npm run build    # Produktions-Build nach dist/
+npm install      # Install dependencies
+npm run dev      # Dev server with hot reload on http://localhost:5173
+npm test         # Run tests once (Vitest)
+npm run lint     # Lint (oxlint)
+npm run build    # Production build to dist/
 ```
