@@ -3,8 +3,8 @@ function App() {
     <main>
       <h1>Sleep Calculator</h1>
       <p>
-        Finde die beste Einschlafzeit basierend auf 90-Minuten-Schlafzyklen und
-        deiner Weckzeit.
+        Find the best time to fall asleep based on 90-minute sleep cycles and
+        your wake-up time.
       </p>
     </main>
   )

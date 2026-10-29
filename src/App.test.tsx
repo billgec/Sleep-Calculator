@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import App from './App.tsx'
 
 describe('App', () => {
-  it('rendert die Überschrift', () => {
+  it('renders the heading', () => {
     render(<App />)
     expect(
       screen.getByRole('heading', { name: 'Sleep Calculator' }),
