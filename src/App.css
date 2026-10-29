@@ -62,8 +62,7 @@
   color: var(--text);
 }
 
-.mode-toggle button:focus-visible,
-.time-picker select:focus-visible {
+.mode-toggle button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
@@ -77,10 +76,6 @@
 }
 
 .time-picker {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
   margin: 0 0 1.5rem;
   padding: 0;
   border: 0;
@@ -93,23 +88,78 @@
   color: var(--text-muted);
 }
 
-.time-picker select {
-  appearance: none;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: 0.6rem;
-  background: var(--surface-strong);
-  color: var(--text);
-  font: inherit;
-  font-size: 2rem;
-  font-variant-numeric: tabular-nums;
-  text-align: center;
-  cursor: pointer;
+.time-picker-wheels {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
 }
 
-.time-picker span {
+.time-picker-wheels::before {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 44px;
+  transform: translateY(-50%);
+  border-block: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--accent-soft);
+  box-shadow: 0 0 2rem rgb(169 180 255 / 0.12);
+  pointer-events: none;
+}
+
+.time-picker-colon {
+  position: relative;
   font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.wheel {
+  position: relative;
+  width: 5rem;
+  perspective: 400px;
+}
+
+.wheel-track {
+  height: calc(var(--item-height) * var(--visible-items));
+  padding-block: calc(var(--item-height) * (var(--visible-items) - 1) / 2);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent);
+  transform-style: preserve-3d;
+  border-radius: 0.75rem;
+  cursor: grab;
+}
+
+.wheel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.wheel-track:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.wheel-item {
+  height: var(--item-height);
+  display: grid;
+  place-items: center;
+  scroll-snap-align: center;
+  font-size: 1.75rem;
+  font-variant-numeric: tabular-nums;
   color: var(--text-muted);
+  user-select: none;
+  transition: color 0.15s;
+}
+
+.wheel-item[data-selected] {
+  color: var(--text);
+  font-weight: 600;
 }
 
 .now {
@@ -187,7 +237,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mode-toggle button {
+  .mode-toggle button,
+  .wheel-item {
     transition: none;
   }
 }

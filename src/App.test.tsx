@@ -36,10 +36,12 @@ describe('App', () => {
 
   it('updates bedtimes when the wake-up time changes', () => {
     render(<App />)
-    fireEvent.change(screen.getByLabelText('Hours'), { target: { value: '6' } })
-    fireEvent.change(screen.getByLabelText('Minutes'), {
-      target: { value: '30' },
-    })
+    const hours = screen.getByRole('spinbutton', { name: 'Hours' })
+    const minutes = screen.getByRole('spinbutton', { name: 'Minutes' })
+    fireEvent.keyDown(hours, { key: 'ArrowUp' })
+    for (let i = 0; i < 6; i++) fireEvent.keyDown(minutes, { key: 'ArrowDown' })
+    expect(hours.getAttribute('aria-valuetext')).toBe('06')
+    expect(minutes.getAttribute('aria-valuetext')).toBe('30')
     expect(times()).toEqual(['21:15', '22:45', '00:15'])
   })
 
@@ -51,7 +53,7 @@ describe('App', () => {
       screen.getByRole('heading', { name: 'Set your alarm for' }),
     ).toBeDefined()
     expect(times()).toEqual(['07:45', '06:15', '04:45'])
-    expect(screen.queryByLabelText('Hours')).toBeNull()
+    expect(screen.queryByRole('spinbutton')).toBeNull()
   })
 
   it('marks the 6 and 5 cycle suggestions as recommended', () => {
