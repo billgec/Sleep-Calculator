@@ -20,5 +20,3 @@ npm test         # Tests einmal ausführen (Vitest)
 npm run lint     # Linting (oxlint)
 npm run build    # Produktions-Build nach dist/
 ```
-
-Stack: React 19, TypeScript, Vite, Vitest + Testing Library.
