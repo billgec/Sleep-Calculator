@@ -118,6 +118,9 @@
 
 .wheel {
   position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: pan-y;
   width: 5rem;
   perspective: 400px;
 }
@@ -134,6 +137,11 @@
   transform-style: preserve-3d;
   border-radius: 0.75rem;
   cursor: grab;
+}
+
+.wheel-track[data-dragging] {
+  scroll-snap-type: none;
+  cursor: grabbing;
 }
 
 .wheel-track::-webkit-scrollbar {
@@ -153,7 +161,6 @@
   font-size: 1.75rem;
   font-variant-numeric: tabular-nums;
   color: var(--text-muted);
-  user-select: none;
   transition: color 0.15s;
 }
 

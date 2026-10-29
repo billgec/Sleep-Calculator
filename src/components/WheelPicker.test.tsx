@@ -54,4 +54,18 @@ describe('WheelPicker', () => {
     vi.advanceTimersByTime(200)
     expect(onChange).toHaveBeenCalledWith(10)
   })
+
+  it('selects the value the wheel is dragged to with the mouse', () => {
+    vi.useFakeTimers()
+    const { onChange, wheel } = renderWheel(0)
+    const mouse = { pointerId: 1, pointerType: 'mouse', button: 0 }
+    fireEvent.pointerDown(wheel, { ...mouse, clientY: 200 })
+    vi.advanceTimersByTime(1000)
+    fireEvent.pointerMove(wheel, { ...mouse, clientY: 112 })
+    vi.advanceTimersByTime(1000)
+    fireEvent.pointerUp(wheel, { ...mouse, clientY: 112 })
+    expect(wheel.scrollTop).toBe(2 * 44)
+    vi.advanceTimersByTime(200)
+    expect(onChange).toHaveBeenCalledWith(10)
+  })
 })
