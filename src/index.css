@@ -1,31 +1,39 @@
 :root {
-  --text: #2b2833;
-  --text-muted: #6b6375;
-  --bg: #fafafa;
-  --accent: #5b4bdb;
+  --bg-top: #0b1026;
+  --bg-bottom: #1b1740;
+  --surface: rgb(255 255 255 / 0.05);
+  --surface-strong: rgb(255 255 255 / 0.09);
+  --border: rgb(255 255 255 / 0.1);
+  --text: #e6e8f5;
+  --text-muted: #9aa0c3;
+  --accent: #a9b4ff;
+  --accent-soft: rgb(169 180 255 / 0.15);
+  --moon: #f4e9c1;
+  --radius: 1rem;
 
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
-  color-scheme: light dark;
+  color-scheme: dark;
   color: var(--text);
-  background: var(--bg);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #ece9f2;
-    --text-muted: #a9a3b4;
-    --bg: #14121a;
-    --accent: #9d90ff;
-  }
+  background: var(--bg-top);
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgb(255 255 255 / 0.7), transparent),
+    radial-gradient(1px 1px at 78% 12%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 64% 32%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1px 1px at 30% 58%, rgb(255 255 255 / 0.4), transparent),
+    radial-gradient(1px 1px at 88% 66%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 8% 82%, rgb(255 255 255 / 0.4), transparent),
+    linear-gradient(var(--bg-top), var(--bg-bottom));
+  background-attachment: fixed;
 }
 
 #root {
-  max-width: 40rem;
+  max-width: 32rem;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
 }
