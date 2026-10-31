@@ -16,6 +16,7 @@ describe('App', () => {
   afterEach(() => {
     cleanup()
     vi.useRealTimers()
+    window.location.hash = ''
   })
 
   it('renders the heading', () => {
@@ -65,5 +66,27 @@ describe('App', () => {
     expect(within(six).getByText('6 cycles · 9 h of sleep')).toBeDefined()
     expect(within(five).getByText('Recommended')).toBeDefined()
     expect(within(four).queryByText('Recommended')).toBeNull()
+  })
+
+  it('opens the legal pages from the footer', async () => {
+    window.scrollTo = vi.fn()
+    render(<App />)
+    const footer = screen.getByRole('navigation', { name: 'Legal' })
+
+    fireEvent.click(within(footer).getByRole('link', { name: 'Privacy policy' }))
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Privacy policy' }),
+    ).toBeDefined()
+    expect(screen.queryByRole('heading', { name: 'Sleep Calculator' })).toBeNull()
+
+    fireEvent.click(within(footer).getByRole('link', { name: 'Legal notice' }))
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Legal notice' }),
+    ).toBeDefined()
+
+    fireEvent.click(screen.getByRole('link', { name: /Back to the calculator/ }))
+    expect(
+      await screen.findByRole('heading', { name: 'Sleep Calculator' }),
+    ).toBeDefined()
   })
 })
