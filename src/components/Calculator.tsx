@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FallAsleepSlider } from './FallAsleepSlider.tsx'
+import { HowItWorks } from './HowItWorks.tsx'
 import { ModeToggle } from './ModeToggle.tsx'
 import { SuggestionList } from './SuggestionList.tsx'
 import { type TimeOfDay, TimePicker } from './TimePicker.tsx'
@@ -69,6 +70,8 @@ export function Calculator() {
           ? 'No time to fall asleep included.'
           : `Includes about ${fallAsleepMinutes} minutes to fall asleep.`}
       </p>
+
+      <HowItWorks />
     </main>
   )
 }

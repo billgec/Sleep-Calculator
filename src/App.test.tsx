@@ -107,6 +107,13 @@ describe('App', () => {
     expect(times()).toEqual(['07:35', '06:05', '04:35'])
   })
 
+  it('explains how sleep cycles work below the calculator', () => {
+    render(<App />)
+    const section = screen.getByRole('region', { name: 'How it works' })
+    expect(within(section).getByText(/about 90 minutes/)).toBeDefined()
+    expect(within(section).getByText(/not medical advice/)).toBeDefined()
+  })
+
   it('opens the legal pages from the footer', async () => {
     window.scrollTo = vi.fn()
     render(<App />)
