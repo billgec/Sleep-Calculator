@@ -68,6 +68,45 @@ describe('App', () => {
     expect(within(four).queryByText('Recommended')).toBeNull()
   })
 
+  it('shows the default fall-asleep time of 15 minutes', () => {
+    render(<App />)
+    const slider = screen.getByRole('slider', { name: /Time to fall asleep/ })
+    expect(slider).toHaveProperty('value', '15')
+    expect(
+      screen.getByText('Includes about 15 minutes to fall asleep.'),
+    ).toBeDefined()
+  })
+
+  it('shifts bedtimes when the fall-asleep time changes', () => {
+    render(<App />)
+    const slider = screen.getByRole('slider', { name: /Time to fall asleep/ })
+    fireEvent.change(slider, { target: { value: '30' } })
+    expect(times()).toEqual(['21:30', '23:00', '00:30'])
+    expect(
+      screen.getByText('Includes about 30 minutes to fall asleep.'),
+    ).toBeDefined()
+  })
+
+  it('shifts wake-up times when the fall-asleep time changes', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'When to wake up' }))
+    const slider = screen.getByRole('slider', { name: /Time to fall asleep/ })
+    fireEvent.change(slider, { target: { value: '0' } })
+    expect(times()).toEqual(['07:30', '06:00', '04:30'])
+    expect(screen.getByText('No time to fall asleep included.')).toBeDefined()
+  })
+
+  it('keeps the fall-asleep time when switching modes', () => {
+    render(<App />)
+    const slider = screen.getByRole('slider', { name: /Time to fall asleep/ })
+    fireEvent.change(slider, { target: { value: '5' } })
+    fireEvent.click(screen.getByRole('button', { name: 'When to wake up' }))
+    expect(
+      screen.getByRole('slider', { name: /Time to fall asleep/ }),
+    ).toHaveProperty('value', '5')
+    expect(times()).toEqual(['07:35', '06:05', '04:35'])
+  })
+
   it('opens the legal pages from the footer', async () => {
     window.scrollTo = vi.fn()
     render(<App />)
