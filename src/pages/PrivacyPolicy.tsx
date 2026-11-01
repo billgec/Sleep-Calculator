@@ -4,8 +4,7 @@ import { OperatorAddress } from '../components/OperatorAddress.tsx'
 import { LAST_UPDATED } from '../legal.ts'
 
 const DSB_URL = 'https://www.dsb.gv.at'
-const GITHUB_PRIVACY_URL =
-  'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement'
+const VERCEL_PRIVACY_URL = 'https://vercel.com/legal/privacy-policy'
 
 export function PrivacyPolicy() {
   return (
@@ -32,22 +31,21 @@ export function PrivacyPolicy() {
         provide the function you use (§ 165 (3) TKG 2021).
       </p>
 
-      <h2>Hosting by GitHub Pages</h2>
+      <h2>Hosting by Vercel</h2>
       <p>
-        This website is hosted on GitHub Pages, a service of GitHub, Inc., 88
-        Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. When you
-        visit the website, GitHub processes technical data such as your IP
-        address, the date and time of the request and your browser
-        information in server logs. This is necessary to deliver the website
-        and to keep it secure.
+        This website is hosted by Vercel Inc., 440 N Barranca Ave #4133,
+        Covina, CA 91723, USA. When you visit the website, Vercel processes
+        technical data such as your IP address, the date and time of the
+        request and your browser information in server logs. This is
+        necessary to deliver the website and to keep it secure.
       </p>
       <p>
         The legal basis is our legitimate interest in a secure and reliable
-        website (Art. 6(1)(f) GDPR). Data may be processed in the USA. GitHub
+        website (Art. 6(1)(f) GDPR). Data may be processed in the USA. Vercel
         is certified under the EU-U.S. Data Privacy Framework. For details,
         see the{' '}
-        <a href={GITHUB_PRIVACY_URL} target="_blank" rel="noreferrer">
-          GitHub General Privacy Statement
+        <a href={VERCEL_PRIVACY_URL} target="_blank" rel="noreferrer">
+          Vercel Privacy Policy
         </a>
         .
       </p>
