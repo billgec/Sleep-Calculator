@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App.tsx'
+import { STORAGE_KEY } from './settings.ts'
 
 const times = () =>
   within(screen.getByRole('list'))
@@ -9,6 +10,7 @@ const times = () =>
 
 describe('App', () => {
   beforeEach(() => {
+    localStorage.clear()
     vi.useFakeTimers({ toFake: ['Date'] })
     vi.setSystemTime(new Date(2026, 9, 29, 22, 30))
   })
@@ -107,9 +109,44 @@ describe('App', () => {
     expect(times()).toEqual(['07:35', '06:05', '04:35'])
   })
 
+  it('restores the last settings after a reload', () => {
+    const { unmount } = render(<App />)
+    fireEvent.keyDown(screen.getByRole('spinbutton', { name: 'Hours' }), {
+      key: 'ArrowUp',
+    })
+    fireEvent.change(
+      screen.getByRole('slider', { name: /Time to fall asleep/ }),
+      { target: { value: '30' } },
+    )
+    fireEvent.click(screen.getByRole('button', { name: 'When to wake up' }))
+    unmount()
+
+    render(<App />)
+    expect(
+      screen.getByRole('button', { name: 'When to wake up' }),
+    ).toHaveProperty('ariaPressed', 'true')
+    expect(
+      screen.getByRole('slider', { name: /Time to fall asleep/ }),
+    ).toHaveProperty('value', '30')
+    fireEvent.click(screen.getByRole('button', { name: 'When to go to bed' }))
+    expect(
+      screen.getByRole('spinbutton', { name: 'Hours' }).getAttribute('aria-valuetext'),
+    ).toBe('06')
+  })
+
+  it('falls back to 07:00 when the stored settings are invalid', () => {
+    localStorage.setItem(STORAGE_KEY, '{"wakeUp":{"hours":25,"minutes":3}')
+    render(<App />)
+    expect(times()).toEqual(['21:45', '23:15', '00:45'])
+  })
+
   it('explains how sleep cycles work below the calculator', () => {
     render(<App />)
     const section = screen.getByRole('region', { name: 'How it works' })
+    const details = section.querySelector('details')
+    expect(details?.open).toBe(false)
+    fireEvent.click(within(section).getByText('How it works'))
+    expect(details?.open).toBe(true)
     expect(within(section).getByText(/about 90 minutes/)).toBeDefined()
     expect(within(section).getByText(/not medical advice/)).toBeDefined()
   })

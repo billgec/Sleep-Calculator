@@ -16,9 +16,19 @@ export function PrivacyPolicy() {
       <h2>Summary</h2>
       <p>
         Sleep Calculator runs entirely in your browser. The times you enter
-        are never sent to a server or stored. This website uses no cookies,
-        no local storage, no analytics or tracking, and loads no external
-        fonts, scripts or other resources.
+        are never sent to a server. This website uses no cookies, no
+        analytics or tracking, and loads no external fonts, scripts or other
+        resources.
+      </p>
+
+      <h2>Local storage</h2>
+      <p>
+        To save you from entering them again, your last wake-up time, mode
+        and fall-asleep time are saved in your browser&apos;s local storage.
+        This data stays on your device, is never transmitted and contains no
+        personal information. You can delete it at any time by clearing your
+        browser&apos;s site data. Storing these settings is necessary to
+        provide the function you use (§ 165 (3) TKG 2021).
       </p>
 
       <h2>Hosting by GitHub Pages</h2>

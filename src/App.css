@@ -43,10 +43,47 @@
   background: var(--surface);
 }
 
+.how-it-works summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.how-it-works summary::-webkit-details-marker {
+  display: none;
+}
+
+.how-it-works summary::after {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: translateY(-25%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.how-it-works details[open] summary::after {
+  transform: translateY(25%) rotate(-135deg);
+}
+
+.how-it-works summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 .how-it-works h2 {
-  margin: 0 0 0.75rem;
+  margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+.how-it-works details[open] summary {
+  margin-bottom: 0.75rem;
 }
 
 .how-it-works p {

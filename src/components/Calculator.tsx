@@ -1,25 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FallAsleepSlider } from './FallAsleepSlider.tsx'
 import { HowItWorks } from './HowItWorks.tsx'
 import { ModeToggle } from './ModeToggle.tsx'
 import { SuggestionList } from './SuggestionList.tsx'
 import { type TimeOfDay, TimePicker } from './TimePicker.tsx'
-import {
-  DEFAULT_FALL_ASLEEP_MINUTES,
-  type SleepMode,
-  calculateSleep,
-  nextOccurrence,
-} from '../sleepCycles.ts'
+import { loadSettings, saveSettings } from '../settings.ts'
+import { type SleepMode, calculateSleep, nextOccurrence } from '../sleepCycles.ts'
 import { formatTime } from '../time.ts'
 import { useNow } from '../useNow.ts'
 
 export function Calculator() {
-  const [mode, setMode] = useState<SleepMode>('bedtime')
-  const [wakeUp, setWakeUp] = useState<TimeOfDay>({ hours: 7, minutes: 0 })
+  const [initial] = useState(loadSettings)
+  const [mode, setMode] = useState<SleepMode>(initial.mode)
+  const [wakeUp, setWakeUp] = useState<TimeOfDay>(initial.wakeUp)
   const [fallAsleepMinutes, setFallAsleepMinutes] = useState(
-    DEFAULT_FALL_ASLEEP_MINUTES,
+    initial.fallAsleepMinutes,
   )
   const now = useNow()
+
+  useEffect(() => {
+    saveSettings({ mode, wakeUp, fallAsleepMinutes })
+  }, [mode, wakeUp, fallAsleepMinutes])
 
   const reference =
     mode === 'bedtime'
