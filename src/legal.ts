@@ -5,4 +5,4 @@ export const operator = {
   email: 'dev@gacs.at',
 }
 
-export const LAST_UPDATED = 'October 2026'
+export const LAST_UPDATED = 'November 2026'
