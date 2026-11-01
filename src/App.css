@@ -1,24 +1,63 @@
 .app header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: left;
 }
 
 .app h1 {
   margin: 0;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  background: linear-gradient(90deg, var(--text), var(--teal));
+  background-clip: text;
+  color: transparent;
 }
 
-.app h1::before {
-  content: '';
+.tagline {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.logo {
   display: block;
-  width: 3rem;
-  height: 3rem;
-  margin: 0 auto 1rem;
-  border-radius: 50%;
-  box-shadow: inset -0.8rem -0.3rem 0 0 var(--moon);
-  filter: drop-shadow(0 0 1rem rgb(244 233 193 / 0.35));
-  transform: rotate(-20deg);
+  flex: none;
+  width: 3.25rem;
+  height: 3.25rem;
+  overflow: visible;
+}
+
+.logo-track,
+.logo-arc {
+  fill: none;
+  stroke-width: 4;
+}
+
+.logo-track {
+  stroke: var(--surface-strong);
+}
+
+.logo-arc {
+  stroke: var(--accent);
+  stroke-linecap: round;
+}
+
+.logo-dot {
+  fill: var(--teal);
+  filter: drop-shadow(0 0 6px var(--teal));
 }
 
 .intro,
@@ -27,7 +66,7 @@
 }
 
 .intro {
-  margin: 0.5rem 0 0;
+  margin: 0.75rem 0 0;
 }
 
 .note {
@@ -41,6 +80,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
+  backdrop-filter: blur(6px);
 }
 
 .how-it-works summary {
@@ -108,6 +148,7 @@
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
+  backdrop-filter: blur(6px);
 }
 
 .mode-toggle button {
@@ -291,7 +332,7 @@
   padding: 0.15rem 0.6rem;
   border-radius: 999px;
   background: var(--accent);
-  color: var(--bg-top);
+  color: var(--sky-top);
   font-size: 0.75rem;
   font-weight: 600;
 }
@@ -381,6 +422,29 @@
 
 .site-footer a:hover {
   color: var(--text);
+}
+
+.site-footer .github-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: fit-content;
+  margin: 1rem auto 0;
+  font-size: 0.8rem;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.site-footer .github-link:hover {
+  opacity: 1;
+}
+
+.github-link svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
 }
 
 .fall-asleep {

@@ -1,6 +1,7 @@
 import './App.css'
 import { Calculator } from './components/Calculator.tsx'
 import { Footer } from './components/Footer.tsx'
+import { NightSky } from './components/NightSky.tsx'
 import { LegalNotice } from './pages/LegalNotice.tsx'
 import { PrivacyPolicy } from './pages/PrivacyPolicy.tsx'
 import { useHashRoute } from './useHashRoute.ts'
@@ -10,6 +11,7 @@ function App() {
 
   return (
     <>
+      <NightSky />
       {route === 'legal-notice' ? (
         <LegalNotice />
       ) : route === 'privacy' ? (
