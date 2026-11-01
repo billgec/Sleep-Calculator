@@ -3,8 +3,8 @@
   --sky-mid: #0b1033;
   --sky-low: #1d1650;
   --horizon-glow: rgb(96 214 200 / 0.18);
-  --aurora-teal: rgb(84 220 196 / 0.16);
-  --aurora-violet: rgb(150 110 255 / 0.18);
+  --aurora-a: rgb(84 220 196 / 0.16);
+  --aurora-b: rgb(150 110 255 / 0.18);
   --hill-back: #0a0c24;
   --hill-front: #05060f;
   --surface: rgb(14 18 48 / 0.55);
@@ -14,8 +14,11 @@
   --text-muted: #9aa0c3;
   --accent: #a9b4ff;
   --accent-soft: rgb(169 180 255 / 0.15);
-  --teal: #7fe3d2;
+  --accent-glow: rgb(169 180 255 / 0.12);
+  --highlight: #7fe3d2;
   --moon: #f4e9c1;
+  --moon-glow: rgb(244 233 193 / 0.4);
+  --stars-opacity: 0.8;
   --radius: 1rem;
 
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -23,6 +26,29 @@
   color-scheme: dark;
   color: var(--text);
   background: var(--sky-top);
+}
+
+:root[data-theme='dusk'] {
+  --sky-top: #1a1030;
+  --sky-mid: #3b1f4f;
+  --sky-low: #7d4065;
+  --horizon-glow: rgb(255 176 150 / 0.3);
+  --aurora-a: rgb(255 150 196 / 0.2);
+  --aurora-b: rgb(196 150 255 / 0.2);
+  --hill-back: #2c1739;
+  --hill-front: #170c22;
+  --surface: rgb(44 22 56 / 0.5);
+  --surface-strong: rgb(255 235 245 / 0.12);
+  --border: rgb(255 220 235 / 0.14);
+  --text: #fcf0f4;
+  --text-muted: #d8b9ca;
+  --accent: #f5aecb;
+  --accent-soft: rgb(245 174 203 / 0.17);
+  --accent-glow: rgb(245 174 203 / 0.14);
+  --highlight: #ffcaa8;
+  --moon: #fff1e2;
+  --moon-glow: rgb(255 214 190 / 0.5);
+  --stars-opacity: 0.55;
 }
 
 body {
@@ -54,8 +80,8 @@ body {
   position: absolute;
   inset: -20% -10% 30%;
   background:
-    radial-gradient(40% 30% at 20% 40%, var(--aurora-teal), transparent 70%),
-    radial-gradient(45% 35% at 80% 25%, var(--aurora-violet), transparent 70%),
+    radial-gradient(40% 30% at 20% 40%, var(--aurora-a), transparent 70%),
+    radial-gradient(45% 35% at 80% 25%, var(--aurora-b), transparent 70%),
     radial-gradient(60% 25% at 50% 100%, var(--horizon-glow), transparent 70%);
   filter: blur(30px);
   animation: aurora-drift 40s ease-in-out infinite alternate;
@@ -68,7 +94,7 @@ body {
 
 .stars-far {
   background: url('./assets/stars-far.svg');
-  opacity: 0.8;
+  opacity: var(--stars-opacity);
 }
 
 .stars-near {

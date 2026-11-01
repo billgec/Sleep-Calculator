@@ -2,6 +2,7 @@ import { cleanup, fireEvent, render, screen, within } from '@testing-library/rea
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App.tsx'
 import { STORAGE_KEY } from './settings.ts'
+import { THEME_KEY } from './theme.ts'
 
 const times = () =>
   within(screen.getByRole('list'))
@@ -19,6 +20,7 @@ describe('App', () => {
     cleanup()
     vi.useRealTimers()
     window.location.hash = ''
+    delete document.documentElement.dataset.theme
   })
 
   it('renders the heading', () => {
@@ -178,5 +180,28 @@ describe('App', () => {
     expect(
       await screen.findByRole('heading', { name: 'Ninety' }),
     ).toBeDefined()
+  })
+
+  it('uses the night theme by default', () => {
+    render(<App />)
+    expect(screen.getByRole('button', { name: 'Night' })).toHaveProperty(
+      'ariaPressed',
+      'true',
+    )
+    expect(document.documentElement.dataset.theme).toBe('night')
+  })
+
+  it('switches to the dusk theme and remembers it', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'Dusk' }))
+    expect(document.documentElement.dataset.theme).toBe('dusk')
+    expect(localStorage.getItem(THEME_KEY)).toBe('dusk')
+
+    cleanup()
+    render(<App />)
+    expect(screen.getByRole('button', { name: 'Dusk' })).toHaveProperty(
+      'ariaPressed',
+      'true',
+    )
   })
 })

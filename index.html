@@ -13,6 +13,13 @@
       content="Ninety finds the best time to go to bed or wake up, using 90-minute sleep cycles and your time to fall asleep."
     />
     <title>Ninety · Sleep in 90-minute cycles</title>
+    <script>
+      try {
+        if (localStorage.getItem('sleep-calculator:theme') === 'dusk') {
+          document.documentElement.dataset.theme = 'dusk'
+        }
+      } catch {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
