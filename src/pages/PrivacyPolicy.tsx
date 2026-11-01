@@ -1,3 +1,4 @@
+import { APP_NAME } from '../brand.ts'
 import { LegalPage } from '../components/LegalPage.tsx'
 import { OperatorAddress } from '../components/OperatorAddress.tsx'
 import { LAST_UPDATED } from '../legal.ts'
@@ -15,7 +16,7 @@ export function PrivacyPolicy() {
 
       <h2>Summary</h2>
       <p>
-        Sleep Calculator runs entirely in your browser. The times you enter
+        {APP_NAME} runs entirely in your browser. The times you enter
         are never sent to a server. This website uses no cookies, no
         analytics or tracking, and loads no external fonts, scripts or other
         resources.

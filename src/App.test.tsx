@@ -24,7 +24,7 @@ describe('App', () => {
   it('renders the heading', () => {
     render(<App />)
     expect(
-      screen.getByRole('heading', { name: 'Sleep Calculator' }),
+      screen.getByRole('heading', { name: 'Ninety' }),
     ).toBeDefined()
   })
 
@@ -151,6 +151,13 @@ describe('App', () => {
     expect(within(section).getByText(/not medical advice/)).toBeDefined()
   })
 
+  it('links to the GitHub profile in the footer', () => {
+    render(<App />)
+    expect(
+      screen.getByRole('link', { name: 'billgec' }).getAttribute('href'),
+    ).toBe('https://github.com/billgec')
+  })
+
   it('opens the legal pages from the footer', async () => {
     window.scrollTo = vi.fn()
     render(<App />)
@@ -160,7 +167,7 @@ describe('App', () => {
     expect(
       await screen.findByRole('heading', { level: 1, name: 'Privacy policy' }),
     ).toBeDefined()
-    expect(screen.queryByRole('heading', { name: 'Sleep Calculator' })).toBeNull()
+    expect(screen.queryByRole('heading', { name: 'Ninety' })).toBeNull()
 
     fireEvent.click(within(footer).getByRole('link', { name: 'Legal notice' }))
     expect(
@@ -169,7 +176,7 @@ describe('App', () => {
 
     fireEvent.click(screen.getByRole('link', { name: /Back to the calculator/ }))
     expect(
-      await screen.findByRole('heading', { name: 'Sleep Calculator' }),
+      await screen.findByRole('heading', { name: 'Ninety' }),
     ).toBeDefined()
   })
 })

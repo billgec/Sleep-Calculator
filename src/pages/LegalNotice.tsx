@@ -1,3 +1,4 @@
+import { APP_NAME } from '../brand.ts'
 import { LegalPage } from '../components/LegalPage.tsx'
 import { OperatorAddress } from '../components/OperatorAddress.tsx'
 import { LAST_UPDATED } from '../legal.ts'
@@ -10,7 +11,7 @@ export function LegalNotice() {
 
       <h2>About this project</h2>
       <p>
-        Sleep Calculator is a private, non-commercial project. It offers no
+        {APP_NAME} is a private, non-commercial project. It offers no
         paid services and shows no advertising.
       </p>
 

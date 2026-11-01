@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { APP_NAME, TAGLINE } from '../brand.ts'
 import { FallAsleepSlider } from './FallAsleepSlider.tsx'
 import { HowItWorks } from './HowItWorks.tsx'
+import { Logo } from './Logo.tsx'
 import { ModeToggle } from './ModeToggle.tsx'
 import { SuggestionList } from './SuggestionList.tsx'
 import { type TimeOfDay, TimePicker } from './TimePicker.tsx'
@@ -31,9 +33,15 @@ export function Calculator() {
   return (
     <main className="app">
       <header>
-        <h1>Sleep Calculator</h1>
+        <div className="brand">
+          <Logo />
+          <div>
+            <h1>{APP_NAME}</h1>
+            <p className="tagline">{TAGLINE}</p>
+          </div>
+        </div>
         <p className="intro">
-          Wake up between 90-minute sleep cycles and feel rested.
+          Wake up between sleep cycles and feel rested.
         </p>
       </header>
 
