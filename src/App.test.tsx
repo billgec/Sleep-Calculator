@@ -143,6 +143,10 @@ describe('App', () => {
   it('explains how sleep cycles work below the calculator', () => {
     render(<App />)
     const section = screen.getByRole('region', { name: 'How it works' })
+    const details = section.querySelector('details')
+    expect(details?.open).toBe(false)
+    fireEvent.click(within(section).getByText('How it works'))
+    expect(details?.open).toBe(true)
     expect(within(section).getByText(/about 90 minutes/)).toBeDefined()
     expect(within(section).getByText(/not medical advice/)).toBeDefined()
   })
